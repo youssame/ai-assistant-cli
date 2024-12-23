@@ -22,6 +22,7 @@ func connect() {
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
+		fmt.Println(err)
 		log.Fatal("Error executing the VPN connect command.")
 	}
 }
