@@ -1,5 +1,3 @@
-Here's a `README.md` file for your CLI:
-
 # My Personal CLI Assistant
 
 A powerful and customizable command-line assistant to manage VPN connections and interact with your local LLM.  
