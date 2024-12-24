@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"fmt"
 	"golang.design/x/clipboard"
 )
 
@@ -13,6 +14,10 @@ func init() {
 
 func Copy(text string) {
 	clipboard.Write(clipboard.FmtText, []byte(text))
+}
+
+func ClipboardSuccess() {
+	fmt.Println("✅ Result copied to the clipboard.")
 }
 
 func BuildMessage(words []string) string {

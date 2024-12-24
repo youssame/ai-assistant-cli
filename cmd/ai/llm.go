@@ -1,7 +1,6 @@
 package ai
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/youssame/assistant-cli/internal"
 	"log"
@@ -15,12 +14,12 @@ var Cmd = &cobra.Command{
 
 // reformulate a given text
 func reformulate(message string) {
-	res, err := internal.GenerateResponse(`reformulate this "` + message + `"`)
+	res, err := internal.GenerateResponse(`formulate this message "` + message + `"`)
 	if err != nil {
 		log.Fatal(err)
 	}
 	internal.Copy(res)
-	fmt.Println("The result has been copied to the clipboard.")
+	internal.ClipboardSuccess()
 }
 
 // correct a given text
@@ -30,7 +29,7 @@ func correct(message string) {
 		log.Fatal(err)
 	}
 	internal.Copy(res)
-	fmt.Println("The result has been copied to the clipboard.")
+	internal.ClipboardSuccess()
 }
 
 // ask a given question
@@ -40,7 +39,37 @@ func ask(message string) {
 		log.Fatal(err)
 	}
 	internal.Copy(res)
-	fmt.Println("The result has been copied to the clipboard.")
+	internal.ClipboardSuccess()
+}
+
+// genEmail an email based on a given topic
+func genEmail(message string) {
+	res, err := internal.GenerateResponse(`The email should be about "` + message + `"`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	internal.Copy(res)
+	internal.ClipboardSuccess()
+}
+
+// genEmail an email based on a given topic
+func genMessage(message string) {
+	res, err := internal.GenerateResponse(` a slack message about "` + message + `"`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	internal.Copy(res)
+	internal.ClipboardSuccess()
+}
+
+// genNotes generates a professional and organized meeting notes from a draft
+func genNotes(message string) {
+	res, err := internal.GenerateResponse(` generate professional and organized meeting notes from this draft (the notes are seperated by "/") : "` + message + `"`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	internal.Copy(res)
+	internal.ClipboardSuccess()
 }
 
 // generate a given request (announcement, email, message...)
@@ -50,7 +79,7 @@ func generate(message string) {
 		log.Fatal(err)
 	}
 	internal.Copy(res)
-	fmt.Println("The result has been copied to the clipboard.")
+	internal.ClipboardSuccess()
 }
 func init() {
 	reformulateCmd := &cobra.Command{
@@ -74,6 +103,30 @@ func init() {
 				println("The message to be corrected cannot be empty.")
 			} else {
 				correct(internal.BuildMessage(args))
+			}
+		},
+	}
+	emailCmd := &cobra.Command{
+		Use:     "e",
+		Version: "0.1.0",
+		Short:   "Generate an email based on a given topic",
+		Run: func(cmd *cobra.Command, args []string) {
+			if len(args) == 0 {
+				println("The message to be corrected cannot be empty.")
+			} else {
+				genEmail(internal.BuildMessage(args))
+			}
+		},
+	}
+	msgCmd := &cobra.Command{
+		Use:     "m",
+		Version: "0.1.0",
+		Short:   "Generate a slack message based on a given topic",
+		Run: func(cmd *cobra.Command, args []string) {
+			if len(args) == 0 {
+				println("The message to be corrected cannot be empty.")
+			} else {
+				genMessage(internal.BuildMessage(args))
 			}
 		},
 	}
@@ -101,5 +154,17 @@ func init() {
 			}
 		},
 	}
-	Cmd.AddCommand(reformulateCmd, correctCmd, answerCmd, generateCmd)
+	genNotesCmd := &cobra.Command{
+		Use:     "n",
+		Version: "0.1.0",
+		Short:   "Generate Meeting Notes from a Draft",
+		Run: func(cmd *cobra.Command, args []string) {
+			if len(args) == 0 {
+				println("The question to be answered cannot be empty.")
+			} else {
+				genNotes(internal.BuildMessage(args))
+			}
+		},
+	}
+	Cmd.AddCommand(reformulateCmd, correctCmd, answerCmd, generateCmd, emailCmd, msgCmd, genNotesCmd)
 }

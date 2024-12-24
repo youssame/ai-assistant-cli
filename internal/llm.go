@@ -16,7 +16,7 @@ func GenerateResponse(prompt string) (string, error) {
 	prompt = strings.ReplaceAll(prompt, "\"", "\\\"")
 	payload := `{
 		"model": "` + os.Getenv("LLM_MODEL") + `",
-		"prompt": "Respond only with the answer, no extra text or suggestions from you, no markdown, simple words, short,  ` + prompt + `"
+		"prompt": "Using simple, easy, and professional language. The tone should be polite, clear, and direct, suitable for a workplace setting, and do not include phrases like 'Here's the answer' or any similar introductions, and with no markdown format, ` + prompt + `"
 	}`
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer([]byte(payload)))
 	if err != nil {

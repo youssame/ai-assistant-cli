@@ -83,10 +83,22 @@ foo [command]
   ```bash
   foo llm r "Announcement to my team to reach out the the HR?"
   ```  
+- Generate an email based on given topic
+  ```bash
+  foo llm e "Inform the team that tomorrow gonna be off"
+  ```  
+- Generate an slack message based on given topic
+  ```bash
+  foo llm m "Inform the team that tomorrow gonna be off"
+  ```   
 - Answer a given question
   ```bash
   foo llm r "What's the color of the sky"
-  ```  
+  ```   
+- Generate a meeting notes from a given draft notes separated by `/`
+  ```bash
+  foo llm n "Note 1 / Note 2 / Note 3"
+  ```
 
 ---
 
