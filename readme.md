@@ -21,7 +21,7 @@ A powerful and customizable command-line assistant to manage VPN connections and
 To simplify usage, create an alias for the CLI with the required environment variables. Replace placeholders like `[VPN HOST]` and `[LLM MODEL]` with your specific values:
 
 ```bash
-alias foo="APP_NAME=Foo VPN_HOST=[VPN HOST] CISCO_BIN_DIR=[CISCO BIN DIR] LLM_HOST=[LLM HOST] LLM_MODEL=[LLM MODEL] /usr/local/bin/Foo"
+alias foo="APP_NAME=Foo VPN_HOST=[VPN HOST] CISCO_BIN_DIR=[CISCO BIN DIR] LLM_HOST=[LLM HOST] LLM_MODEL=[LLM MODEL] /usr/local/bin/foo"
 ```
 
 Add this alias to your shell configuration file (`~/.bashrc`, `~/.zshrc`, etc.) for persistence:
