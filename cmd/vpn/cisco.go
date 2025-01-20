@@ -38,14 +38,14 @@ func disconnect() {
 	}
 }
 
-func stats() {
+func state() {
 	ciscoBin := os.Getenv("CISCO_BIN_DIR")
-	cmd := exec.Command(ciscoBin, "stats")
+	cmd := exec.Command(ciscoBin, "state")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
-		log.Fatal("Error executing the VPN stats command.")
+		log.Fatal("Error executing the VPN state command.")
 	}
 }
 
@@ -68,14 +68,14 @@ func init() {
 			disconnect()
 		},
 	}
-	vpnStatsCmd := &cobra.Command{
+	vpnStateCmd := &cobra.Command{
 		Use:     "s",
 		Version: "0.1.0",
-		Short:   "stats of the Cisco secure vpn",
+		Short:   "state of the Cisco secure vpn",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Loading the VPN stats....")
-			stats()
+			fmt.Println("Loading the VPN state....")
+			state()
 		},
 	}
-	Cmd.AddCommand(vpnConnectCmd, vpnDisconnectCmd, vpnStatsCmd)
+	Cmd.AddCommand(vpnConnectCmd, vpnDisconnectCmd, vpnStateCmd)
 }

@@ -14,7 +14,7 @@ var Cmd = &cobra.Command{
 
 // reformulate a given text
 func reformulate(message string) {
-	res, err := internal.GenerateResponse(`formulate this message "` + message + `"`)
+	res, err := internal.GenerateResponse(`reformulate this message in a simple easy words, "` + message + `"`)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -44,7 +44,7 @@ func ask(message string) {
 
 // genEmail an email based on a given topic
 func genEmail(message string) {
-	res, err := internal.GenerateResponse(`The email should be about "` + message + `"`)
+	res, err := internal.GenerateResponse(`generate a email about : "` + message + `"`)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -54,7 +54,7 @@ func genEmail(message string) {
 
 // genEmail an email based on a given topic
 func genMessage(message string) {
-	res, err := internal.GenerateResponse(` a slack message about "` + message + `"`)
+	res, err := internal.GenerateResponse(` generate a slack message about "` + message + `"`)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -64,7 +64,7 @@ func genMessage(message string) {
 
 // genNotes generates a professional and organized meeting notes from a draft
 func genNotes(message string) {
-	res, err := internal.GenerateResponse(` generate professional and organized meeting notes from this draft (the notes are seperated by "/") : "` + message + `"`)
+	res, err := internal.GenerateResponse(` generate a 1:1 with my report meeting notes from this draft (the notes are seperated by "/") : "` + message + `"`)
 	if err != nil {
 		log.Fatal(err)
 	}
