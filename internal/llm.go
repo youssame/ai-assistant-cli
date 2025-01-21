@@ -12,10 +12,10 @@ import (
 )
 
 func GenerateResponse(prompt string) (string, error) {
-	url := os.Getenv("LLM_HOST")
+	url := os.Getenv("ASSISTANT_LLM_HOST")
 	prompt = strings.ReplaceAll(prompt, "\"", "\\\"")
 	payload := `{
-		"model": "` + os.Getenv("LLM_MODEL") + `",
+		"model": "` + os.Getenv("ASSISTANT_LLM_MODEL") + `",
 		"prompt": "Using simple, easy, clear, and direct, and short words, and do not include phrases like 'Here's the answer' or any similar introductions, and with no markdown format, ` + prompt + `"
 	}`
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer([]byte(payload)))

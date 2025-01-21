@@ -20,6 +20,10 @@ func ClipboardSuccess() {
 	fmt.Println("✅ Result copied to the clipboard.")
 }
 
+func SuccessAlert() {
+	fmt.Println("✅ Success.")
+}
+
 func BuildMessage(words []string) string {
 	txt := ""
 	for i := 0; i < len(words); i++ {

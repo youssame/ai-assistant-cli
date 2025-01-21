@@ -15,8 +15,8 @@ var Cmd = &cobra.Command{
 }
 
 func connect() {
-	hostAddress := os.Getenv("VPN_HOST")
-	ciscoBin := os.Getenv("CISCO_BIN_DIR")
+	hostAddress := os.Getenv("ASSISTANT_VPN_HOST")
+	ciscoBin := os.Getenv("ASSISTANT_CISCO_BIN_DIR")
 	cmd := exec.Command(ciscoBin, "connect", "-s", "connect", hostAddress)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -28,7 +28,7 @@ func connect() {
 }
 
 func disconnect() {
-	ciscoBin := os.Getenv("CISCO_BIN_DIR")
+	ciscoBin := os.Getenv("ASSISTANT_CISCO_BIN_DIR")
 	cmd := exec.Command(ciscoBin, "disconnect")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -39,7 +39,7 @@ func disconnect() {
 }
 
 func state() {
-	ciscoBin := os.Getenv("CISCO_BIN_DIR")
+	ciscoBin := os.Getenv("ASSISTANT_CISCO_BIN_DIR")
 	cmd := exec.Command(ciscoBin, "state")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
