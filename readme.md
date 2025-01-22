@@ -106,6 +106,10 @@ foo [command]
   ```bash
   foo team sync
   ```  
+- Check that if the cli can connect with elasticsearch cluster
+  ```bash
+  foo team health
+  ```  
 - Make a search query
   ```bash
   foo team search "Name"

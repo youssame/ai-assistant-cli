@@ -66,7 +66,7 @@ func searchInReports(q string) {
 	query := `{
   "query": {
     "query_string": {
-      "query": "` + q + `"
+      "query": "*` + q + `*"
     }
   },
   "size": 10,
