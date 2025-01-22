@@ -24,6 +24,10 @@ func SuccessAlert() {
 	fmt.Println("✅ Success.")
 }
 
+func PrintMessage(msg any) {
+	fmt.Println(msg)
+}
+
 func BuildMessage(words []string) string {
 	txt := ""
 	for i := 0; i < len(words); i++ {

@@ -39,12 +39,13 @@ foo [command]
 
 ### Available Commands
 
-| Command      | Description                                  |  
-|--------------|----------------------------------------------|  
+| Command      | Description                                        |  
+|--------------|----------------------------------------------------|  
 | `completion` | Generate the autocompletion script for your shell. |  
-| `help`       | Get help about any command.                 |  
-| `llm`        | Manage requests to the local LLM.           |  
-| `vpn`        | Manage the Cisco secure VPN.                |  
+| `help`       | Get help about any command.                        |  
+| `llm`        | Manage requests to the local LLM.                  |  
+| `team`       | Manage the reports.               |  
+| `vpn`        | Manage the Cisco secure VPN.                       |  
 
 ### Flags
 
@@ -100,14 +101,12 @@ foo [command]
   foo llm n "Note 1 / Note 2 / Note 3"
   ```
 
----
-
-### Contributing
-
-Feel free to submit issues or contribute to the project by opening pull requests.
-
----
-
-### License
-
-This project is licensed under the MIT License.
+- **Interact with my team:**
+- Sync the reports index with the data in the excel
+  ```bash
+  foo team sync
+  ```  
+- Make a search query
+  ```bash
+  foo team search "Name"
+  ```
