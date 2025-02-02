@@ -1,6 +1,7 @@
 package ai
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/youssame/assistant-cli/internal"
 	"log"
@@ -64,7 +65,17 @@ func genMessage(message string) {
 
 // genNotes generates a professional and organized meeting notes from a draft
 func genNotes(message string) {
-	res, err := internal.GenerateResponse(` generate a 1:1 with my report meeting notes from this draft (the notes are seperated by "/") : "` + message + `"`)
+	res, err := internal.GenerateResponse(` generate meeting notes. Start the notes with 'Date: [today's date]'. After that, use bullet points to summarize the key points discussed in the meeting (the notes are seperated by "/") : "` + message + `"`)
+	if err != nil {
+		log.Fatal(err)
+	}
+	internal.Copy(res)
+	internal.ClipboardSuccess()
+}
+
+// genAnnouncement generates a announcement
+func genAnnouncement(message string) {
+	res, err := internal.GenerateResponse(` Generate an announcement with a title starting with an emoji and a description (please start the description with '@channel') about : "` + message + `"`)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -160,11 +171,23 @@ func init() {
 		Short:   "Generate Meeting Notes from a Draft",
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) == 0 {
-				println("The question to be answered cannot be empty.")
+				fmt.Println("The question to be answered cannot be empty.")
 			} else {
 				genNotes(internal.BuildMessage(args))
 			}
 		},
 	}
-	Cmd.AddCommand(reformulateCmd, correctCmd, answerCmd, generateCmd, emailCmd, msgCmd, genNotesCmd)
+	genAnnouncementCmd := &cobra.Command{
+		Use:     "an",
+		Version: "0.1.0",
+		Short:   "Generate an announcement from a Draft",
+		Run: func(cmd *cobra.Command, args []string) {
+			if len(args) == 0 {
+				fmt.Println("The question to be answered cannot be empty.")
+			} else {
+				genAnnouncement(internal.BuildMessage(args))
+			}
+		},
+	}
+	Cmd.AddCommand(reformulateCmd, correctCmd, answerCmd, generateCmd, emailCmd, msgCmd, genNotesCmd, genAnnouncementCmd)
 }

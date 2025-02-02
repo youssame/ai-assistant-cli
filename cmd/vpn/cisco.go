@@ -3,6 +3,7 @@ package vpn
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/youssame/assistant-cli/internal"
 	"log"
 	"os"
 	"os/exec"
@@ -17,6 +18,8 @@ var Cmd = &cobra.Command{
 func connect() {
 	hostAddress := os.Getenv("ASSISTANT_VPN_HOST")
 	ciscoBin := os.Getenv("ASSISTANT_CISCO_BIN_DIR")
+	password := os.Getenv("ASSISTANT_CISCO_PASSWORD")
+	internal.Copy(password)
 	cmd := exec.Command(ciscoBin, "connect", "-s", "connect", hostAddress)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

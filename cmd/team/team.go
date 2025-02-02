@@ -102,20 +102,16 @@ func printReportsFromRes(res *esapi.Response) {
 
 	// Print results in a table format
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', tabwriter.Debug)
-	fmt.Fprintln(w, "Name\tJob\tOrg\tEmail\tDotted Line Manager\tLOB\tTeam\tVP\t")
+	fmt.Fprintln(w, "Email\tDLM\tTeam\tVP\t")
 
 	for _, hit := range hits {
 		hitMap := hit.(map[string]interface{})
 		source := hitMap["_source"].(map[string]interface{}) // Extract _source
 
 		// Extract and print each property
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t\n",
-			source["name"],
-			source["job"],
-			source["org"],
+		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t\n",
 			source["email"],
 			source["dotted_line_manager"],
-			source["lob"],
 			source["team"],
 			source["vp"],
 		)
